@@ -93,19 +93,15 @@
       user-mail-address "mayank.manjrekar2@arm.com")
 
 ;; System information
-(defvar arm-laptop-p
-  (and (equal (system-name) "FMMXRQ6Y0M")
-       (equal user-login-name "mayman03")))
-(defvar arm-server-p
-  (let ((systemname (system-name)))
-    (or (string-match-p "nahpc2" systemname)
-	(string-match-p "euhpc"  systemname)
-	(string-match-p "sce01"  systemname))))
+(defvar macos-p
+  (eq system-type 'darwin))
+(defvar linux-p
+  (eq system-type 'gnu/linux))
 
 ;;; Exec path:
 (use-package exec-path-from-shell
   :hook (after-init . exec-path-from-shell-initialize)
-  :if arm-laptop-p
+  :if macos-p
   :config
   (dolist (var '("SSH_AUTH_SOCK"
                  "SSH_AGENT_PID"
@@ -147,7 +143,7 @@
   (setq use-dialog-box nil)
 
 ;;; Keyboard mapping on MacOs
-  (when arm-laptop-p
+  (when macos-p
     (setq mac-command-modifier 'meta)
     (setq mac-option-modifier 'meta))
 
@@ -256,7 +252,7 @@
 ;;; TODO: See key-bindings
 ;;; Smartparens
 (use-package smartparens
-  :if arm-laptop-p
+  :if macos-p
   :config
   (progn
                                         ;(require 'smartparens-config)
@@ -841,7 +837,7 @@
 
 ;;; A simple visible bell which works in all terminal types
 (use-package mode-line-bell
-  :if arm-laptop-p
+  :if macos-p
   :hook (after-init . mode-line-bell-mode))
 
 (use-package beacon
@@ -1778,12 +1774,12 @@ ORIG is the advised function, which is called with its ARGS."
 ;;;;;;; Programming languages
 ;;; Markdown
 (use-package markdown-mode
-  :if arm-laptop-p
+  :if macos-p
   :mode ("\\.\\(njk\\|md\\)\\'" . markdown-mode))
 
 ;;; Org-mode
 (use-package org
-  :if arm-laptop-p
+  :if macos-p
   :bind
   (:map org-mode-map
         ("C-M-<return>" . org-insert-subheading))
@@ -1794,7 +1790,7 @@ ORIG is the advised function, which is called with its ARGS."
 
 ;;; LSP
 (use-package lsp-mode
-  :if arm-laptop-p
+  :if macos-p
   :config
   (setq lsp-headerline-breadcrumb-enable t
         gc-cons-threshold (* 100 1024 1024)
@@ -1806,11 +1802,11 @@ ORIG is the advised function, which is called with its ARGS."
   :hook ((prog-mode-hook . lsp)
          (lsp-mode-hook . lsp-enable-which-key-integration)))
 ;; (use-package lsp-ui
-;;   :if arm-laptop-p
+;;   :if macos-p
 ;;   :commands lsp-ui-mode
 ;;   :after lsp-mode)
 ;; (use-package dap-mode
-;;   :if arm-laptop-p
+;;   :if macos-p
 ;;   :after lsp-mode)
 
 (use-package tree-sitter-langs
@@ -1871,7 +1867,7 @@ ORIG is the advised function, which is called with its ARGS."
 
 ;;; Isabelle setup
 (use-package isar-mode
-  :if arm-laptop-p
+  :if macos-p
   :straight (:local-repo "~/Code/simp-isar-mode")
   :mode "\\.thy\\'"
   :config
@@ -1891,19 +1887,19 @@ ORIG is the advised function, which is called with its ARGS."
   )
 
 (use-package isar-goal-mode
-  :if arm-laptop-p
+  :if macos-p
   :straight (:local-repo "~/Code/simp-isar-mode")
   :after isar-mode)
 
 (use-package lsp-isar-parse-args
-  :if arm-laptop-p
+  :if macos-p
   :straight (:local-repo "~/Code/isabelle-emacs/src/Tools/emacs-lsp/lsp-isar/")
   :after isar-mode
   :custom
   (lsp-isar-parse-args-nollvm nil))
 
 (use-package lsp-isar
-  :if arm-laptop-p
+  :if macos-p
   :after (isar-mode yasnippet)
   :straight (:local-repo "~/Code/isabelle-emacs/src/Tools/emacs-lsp/lsp-isar/")
   :commands lsp-isar-define-client-and-start
@@ -1924,17 +1920,17 @@ ORIG is the advised function, which is called with its ARGS."
   )
 
 (use-package session-async
-  :if arm-laptop-p)
+  :if macos-p)
 
 ;;; YAML
 (use-package yaml-mode
-  :if arm-laptop-p
+  :if macos-p
   :mode "\\.yml\\'")
 
 ;;; ACL2
 
 (use-package init-acl2
-  :if arm-laptop-p
+  :if macos-p
   :straight nil
   :hook ((lisp-mode . acl2-lisp-mode))
   ;; :mode ("\\.lisp\\'" . lisp-mode)
