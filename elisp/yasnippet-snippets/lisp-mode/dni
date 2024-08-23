@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: dni
+# key: \dni
+# group: ACL2
+# --
+:do-not-induct t

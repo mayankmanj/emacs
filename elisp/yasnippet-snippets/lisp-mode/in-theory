@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: in-theory
+# key: \it
+# group: ACL2
+# --
+:in-theory (e/d ($1) ($2))

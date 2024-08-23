@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: hints
+# key: \hints
+# group: ACL2
+# --
+:hints (("${1:Goal}" ${2::in-theory (e/d ($3) ($4))}))

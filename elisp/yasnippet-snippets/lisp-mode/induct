@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: induct
+# key: \ind
+# group: ACL2
+# --
+:induct ($1)

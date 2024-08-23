@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: expand
+# key: \expand
+# group: ACL2
+# --
+:expand ($1)

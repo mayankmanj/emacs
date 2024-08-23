@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: do-not
+# key: \dn
+# group: ACL2
+# --
+:do-not '($1)
